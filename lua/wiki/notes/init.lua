@@ -1,22 +1,23 @@
 local notes = {}
 
-function notes.search_notes()
-  require("telescope.builtin").find_files({
-    prompt_tile = "< Notes >",
-    cwd = vim.g.notesDir,
-    hidden = true
-  })
+local function CWD(subdir)
+  if subdir then
+    return string.format("%s/%s", vim.g.notesDir, subdir)
+  else
+    return vim.g.notesDir
+  end
+
 end
 
 --[[
-This works by just calling something like
-lua require("wiki.notes").search_notes_subdir()
-In the () you put the directory you want to search for notes in, if you add more slashes you can do deeper then one
+This works by just calling something like lua require("wiki.notes").search_notes()
+In the () you put the directory you want to search for notes in if you don't want
+to do the base dir. You can add more / to go deeper then one dir
 --]]
-function notes.search_notes_subdir(dir)
+function notes.search_notes(subdir)
   require("telescope.builtin").find_files({
     prompt_tile = "< Notes >",
-    cwd = string.format("%s/%s", vim.g.notesDir, dir),
+    cwd = CWD(subdir),
     hidden = true
   })
 end
@@ -29,7 +30,11 @@ function notes.find_links()
 end
 
 function notes.find_link_file()
-  local currentWord = vim.fn.expand("<cword>")
+  local file = string.format("%s.notes", vim.fn.expand("<cword>"))
+  -- Get the path to the where the file of the current word is
+  local notePath = vim.fn.systemlist(string.format("find . -path '*%s'", file))[1]
+
+  vim.cmd("e " .. notePath)
 end
 
 return notes

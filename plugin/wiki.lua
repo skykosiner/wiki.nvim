@@ -4,6 +4,14 @@ if 1 ~= vim.fn.has "nvim-0.7.0" then
   return
 end
 
+-- Make sure the user has telescope
+local hasTelescope = pcall(require, "telescope")
+
+if not hasTelescope then
+  vim.api.nvim_err_writeln("Wiki.nvim requires telescope.nvim")
+  return
+end
+
 local group = vim.api.nvim_create_augroup("WIKI", { clear = true })
 
 -- Make sure to set the type of the file to markdown, so we get sweet syntax highlights

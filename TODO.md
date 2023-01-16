@@ -1,0 +1,4 @@
+- [ ] Jump between different notes
+- [ ] See where a specific note was referenced
+- [ ] Search notes with telescope
+- [ ] Convert .notes file to a markdown file, or to any other file type (do this using a bash script)

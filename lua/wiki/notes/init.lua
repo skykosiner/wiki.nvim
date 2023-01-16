@@ -9,11 +9,9 @@ local function CWD(subdir)
 
 end
 
---[[
-This works by just calling something like lua require("wiki.notes").search_notes()
-In the () you put the directory you want to search for notes in if you don't want
-to do the base dir. You can add more / to go deeper then one dir
---]]
+-- This works by just calling something like lua require("wiki.notes").search_notes()
+-- In the () you put the directory you want to search for notes in if you don't want
+-- no do the base dir. You can add more / to go deeper then one dir
 function notes.search_notes(subdir)
   require("telescope.builtin").find_files({
     prompt_tile = "< Notes >",
@@ -30,7 +28,7 @@ function notes.find_links()
 end
 
 function notes.find_link_file()
-  local file = string.format("%s.notes", vim.fn.expand("<cword>"))
+  local file = string.format("%s.md", vim.fn.expand("<cword>"))
   -- Get the path to the where the file of the current word is
   local notePath = vim.fn.systemlist(string.format("find . -path '*%s'", file))[1]
 

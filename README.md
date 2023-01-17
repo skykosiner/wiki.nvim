@@ -9,6 +9,7 @@ require("wiki").setup("--[[ Path to where your notes will be ]]")
 * In the dir your notes are stored in use the `.md` file format
 * To link to another note use the syntax `[[note1]]`
     * It doesn't matter how many sub dirs deep the note is you can still link to it
+* If you have a two notes with the same name when jumping too notes the system may get a bit confued as to which note you want
 
 ```lua
 -- Jump to the linked file the cursor is on

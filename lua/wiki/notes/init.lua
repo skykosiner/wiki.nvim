@@ -19,30 +19,6 @@ function notes.search_notes(subdir)
   })
 end
 
-function notes.find_links()
-  -- Get's the current filename trims off the .md suffix
-  local currentNoteName = string.gsub(vim.fn.expand("%:t"), string.format(".%s", vim.fn.expand("%:e")), "")
-  -- Grep each file in the current dir for the string [[note-name]] in order to find all the links
-  require("telescope.builtin").grep_string({ search = string.format("[[%s]]", currentNoteName) })
-end
-
-function notes.find_link_file()
-  local file = string.format("%s.md", vim.fn.expand("<cword>"))
-  -- Get the path to the where the file of the current word is
-  local notePath = vim.fn.systemlist(string.format("find . -path '*%s'", file))[1]
-
-  -- Create the note if it does not exist and then jump to it
-  if notePath == nil then
-    -- Use the || not the && incase the dir is already made so that it will just ignore the error.
-    -- As the && syntax makes sure both don't error, and if the dir already exists mkdir will error
-    os.execute(string.format("mkdir %s/misc 2> /dev/null || touch %s/misc/%s", vim.g.notesDir, vim.g.notesDir, file))
-    notePath = vim.fn.systemlist(string.format("find . -path '*%s'", file))[1]
-  end
-
-  vim.cmd("e " .. notePath)
-
-end
-
 function notes.move_note_to_different_dir()
   local currentNotePath = vim.fn.expand("%:p")
   local currentNoteName = vim.fn.expand("%:t")

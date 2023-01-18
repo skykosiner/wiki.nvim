@@ -14,12 +14,12 @@ require("wiki").setup("--[[ Path to where your notes will be ]]")
 ```lua
 -- Jump to the linked file the cursor is on
 vim.keymap.set("n", "<leader>l", function()
-  require("wiki.notes").find_link_file()
+  require("wiki.notes.links").find_link_file()
 end)
 
 -- Find all the references to the current file
 vim.keymap.set("n", "<leader>r", function()
-  require("wiki.notes").find_links()
+  require("wiki.notes.links").find_links()
 end)
 
 -- Search all note in the notes dir

@@ -21,6 +21,7 @@ function links.find_link_file()
     notePath = vim.fn.systemlist(string.format("find . -path '*%s'", file))[1]
   end
 
+  -- If there is more then one file with that name then let the user pick which one to open up
   if utils.tbl_len(notePath) ~= 1 then
     print("more then one????")
     require("telescope.pickers").new({}, {

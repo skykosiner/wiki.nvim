@@ -36,14 +36,13 @@ function links.find_link_file()
           )
 
           require("telescope.actions").close(prompt_bufnr)
-          vim.cmd("e " .. content.value)
+          utils.edit(content.value)
         end)
         return true
       end,
     }):find()
   else
-    notePath = notePath[1]
-    vim.cmd("e " .. notePath)
+    utils.edit(notePath[1])
   end
 end
 

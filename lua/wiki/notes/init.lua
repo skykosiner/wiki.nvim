@@ -1,3 +1,4 @@
+local utils = require "wiki.utils"
 local notes = {}
 
 local function CWD(subdir)
@@ -41,7 +42,7 @@ function notes.move_note_to_different_dir()
         local newPath = string.format("%s/%s", vim.g.notesDir, content.value)
         os.execute(string.format("mv %s %s", currentNotePath, newPath))
         -- Open the note in the new path
-        vim.cmd(string.format("e %s/%s", newPath, currentNoteName))
+        utils.edit(string.format("%s/%s", newPath, currentNoteName))
       end)
       return true
     end,

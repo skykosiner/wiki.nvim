@@ -11,4 +11,8 @@ function utils.tbl_len(tbl)
   return len
 end
 
+function utils.edit(file)
+  vim.api.nvim_input(string.format(":e %s<CR>", file))
+end
+
 return utils

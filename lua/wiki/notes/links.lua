@@ -21,9 +21,9 @@ function links.find_link_file()
     notePath = vim.fn.systemlist(string.format("find . -path '*%s'", file))[1]
   end
 
+  -- If there is more then one note with the same name let the user pick which one to jump to
   if utils.tbl_len(notePath) ~= 1 then
-    print("more then one????")
-    require("telescope.pickers").new({}, {
+    require("telescope.pickers").new(require("telescope.themes").get_ivy {}, {
       prompt_title = "< Pick a link file >",
       finder = require("telescope.finders").new_table({
         results = notePath,

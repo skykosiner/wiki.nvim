@@ -1,4 +1,5 @@
 **THIS IS NOT VIMWIKI NOR IS IT AS POWERFUL THIS IS A LITTLE TOOL I WROTE FOR MY SELF WITH ONLY THE FUNCTIONS I NEED**
+# SORRY WINDOWS USERS, THIS PLUGIN WON"T 100% FOR YOU, AS YOU CHOSE TO USE A SHIT OS
 
 # Setup
 ```lua
@@ -32,3 +33,30 @@ vim.keymap.set("n", "<leader>sc", function()
   require("wiki.notes").search_notes("school")
 end)
 ```
+
+## Script to compile your notes to markdown, pdf, or html
+When you open the plugin for the first time there is a bash script aded to
+your `~/.local/bin` which allows you to add convert notes. This script will
+only work for non windows users.
+
+This script also requires you have pandoc.
+
+### Install pandoc
+#### Arch
+`sudo pacman -S pandoc`
+#### Ubuntu
+`sudo apt install pandoc`
+
+### Use the script
+```bash
+# PDF
+convertNote --pdf pathToYourNote
+
+# HTML
+convertNote --html pathToYourNote
+
+# Docx
+convertNote --docx pathToYourNote
+```
+
+The script will output the new file in the same folder as your current note.

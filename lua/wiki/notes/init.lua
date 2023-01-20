@@ -25,7 +25,7 @@ function notes.move_note_to_different_dir()
   local currentNoteName = vim.fn.expand("%:t")
   local subDirsOfMainNoteDir = vim.fn.systemlist("find . -type d")
 
-  require("telescope.pickers").new({}, {
+  require("telescope.pickers").new(require("telescope.themes").get_ivy {}, {
     prompt_title = "< Move to dir? >",
     finder = require("telescope.finders").new_table({
       results = subDirsOfMainNoteDir
